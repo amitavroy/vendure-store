@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
+
 import { collectionQuery } from "../../graphql/collections.query";
 import { CollectionType } from "../../interfaces/commons/collection.type";
 import { FilterItem } from "./FilterItem";
@@ -43,11 +44,10 @@ export const Filters = () => {
             {loading && <div>Loading categories...</div>}
             {!loading &&
               items.length > 0 &&
-              React.Children.toArray(
-                items.map((result: CollectionType) => (
-                  <FilterItem name={result.name} slug={result.slug} />
-                ))
-              )}
+              items.map((result: CollectionType) => {
+                const { name, slug } = result;
+                return <FilterItem name={name} slug={slug} key={slug} />;
+              })}
           </div>
         </fieldset>
 
