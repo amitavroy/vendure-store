@@ -1,6 +1,12 @@
 import { gql } from "@apollo/client";
+import {
+  ASSET_FIELDS,
+  PRODUCT_VARIANT_FIELDS,
+} from "./fragments/product.fragments";
 
 export const productDetailsBySlug = (slug: string) => gql`
+  ${PRODUCT_VARIANT_FIELDS}
+  ${ASSET_FIELDS}
   query {
     product(id: "", slug: "${slug}") {
       id
@@ -10,10 +16,7 @@ export const productDetailsBySlug = (slug: string) => gql`
       name
       description
       featuredAsset {
-        width
-        height
-        preview
-        name
+        ...asset
       }
       facetValues {
         name
@@ -23,11 +26,7 @@ export const productDetailsBySlug = (slug: string) => gql`
         totalItems
       }
       variants {
-        sku
-        name
-        productId
-        priceWithTax
-        price
+        ...variant
       }
     }
   }

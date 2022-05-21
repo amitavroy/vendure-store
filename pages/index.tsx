@@ -6,6 +6,7 @@ import { Products } from "../interfaces/product.interface";
 import { VendureService } from "../services/vendure.service";
 
 import type { GetStaticProps, NextPage } from "next";
+import { Filters } from "../components/Filters";
 interface Props {
   products: Products;
   loading: boolean;
@@ -15,7 +16,10 @@ const Home: NextPage<Props> = ({ products, loading }) => {
   return (
     <Layout pageTitle="Vendure commerece Store">
       <div className="flex">
-        <div className="flex-none w-60 pr-4 pt-6"></div>
+        <div className="flex-none w-60 pr-4 pt-6">
+          <Filters />
+        </div>
+
         <div className="flex-initial">
           <div className="grid grid-cols-4 gap-2">
             {loading !== true &&
