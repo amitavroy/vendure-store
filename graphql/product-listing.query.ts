@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const productListing = gql`
   query {
-    products {
+    products(options: { sort: { createdAt: DESC } }) {
       items {
         id
         name
@@ -18,6 +18,7 @@ export const productListing = gql`
           sku
           name
           productId
+          priceWithTax
           price
         }
       }

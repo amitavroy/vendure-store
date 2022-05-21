@@ -13,6 +13,7 @@ export interface Variant {
   sku: string;
   name: string;
   productId: number;
+  priceWithTax: number;
   price: number;
 }
 

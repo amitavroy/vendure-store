@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Header = () => {
   return (
     <header className="border-b border-gray-100">
@@ -20,9 +22,11 @@ export const Header = () => {
             </svg>
           </button>
 
-          <a href="" className="flex">
-            <span className="inline-block w-32 h-10 bg-gray-200 rounded-lg"></span>
-          </a>
+          <Link href={"/"}>
+            <a className="flex">
+              <span className="inline-block w-32 h-10 bg-gray-200 rounded-lg"></span>
+            </a>
+          </Link>
         </div>
 
         <div className="flex items-center justify-end flex-1">
@@ -41,12 +45,11 @@ export const Header = () => {
               News
             </a>
 
-            <a
-              href="/products"
-              className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-red-700 hover:border-current"
-            >
-              Products
-            </a>
+            <Link href="/">
+              <a className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-red-700 hover:border-current">
+                Products
+              </a>
+            </Link>
 
             <a
               href="/contact"

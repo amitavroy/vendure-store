@@ -17,7 +17,7 @@ const Home: NextPage<Props> = ({ products, loading }) => {
       <div className="flex">
         <div className="flex-none w-60 pr-4 pt-6"></div>
         <div className="flex-initial">
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-4 gap-2">
             {loading !== true &&
               products.items.map((product) => {
                 return <ProductCard key={product.id} product={product} />;
