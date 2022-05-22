@@ -86,27 +86,26 @@ export const Header = () => {
               </span>
 
               <span>
-                <a
-                  href="/account"
-                  className="block p-6 border-b-4 border-transparent hover:border-red-700"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                <Link href="/user/login">
+                  <a className="block p-6 border-b-4 border-transparent hover:border-red-700">
+                    <svg
+                      className="w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
 
-                  <span className="sr-only"> Account </span>
-                </a>
+                    <span className="sr-only"> Account </span>
+                  </a>
+                </Link>
               </span>
 
               <span className="hidden sm:block">

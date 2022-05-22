@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloQueryResult, InMemoryCache } from "@apollo/client";
+
 import { productDetailsBySlug } from "../graphql/product-details.slug";
 import { productListing } from "../graphql/product-listing.query";
 import { productSlug } from "../graphql/product-slug.query";

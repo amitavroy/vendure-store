@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "demo.vendure.io"],
+    domains: ["localhost", "demo.vendure.io", "www.hyperui.dev"],
   },
 };
 

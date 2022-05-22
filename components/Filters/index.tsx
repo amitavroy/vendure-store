@@ -6,7 +6,7 @@ import { CollectionType } from "../../interfaces/commons/collection.type";
 import { FilterItem } from "./FilterItem";
 
 export const Filters = () => {
-  const { loading, error, data } = useQuery(collectionQuery);
+  const { loading, data } = useQuery(collectionQuery);
   const [items, setItems] = useState([]);
   useEffect(() => {
     if (data) {
