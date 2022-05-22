@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 const AUTH_TOKEN_KEY = "auth_token";
 
 const httpLink = new HttpLink({
-  uri: `${process.env.NEXT_PUBLIC_VENDURE_URL}/shop-api`,
+  uri: `${process.env.NEXT_PUBLIC_VENDURE_URL}`,
 });
 
 const afterwareLink = new ApolloLink((operation, forward) => {

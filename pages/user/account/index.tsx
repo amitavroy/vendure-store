@@ -10,7 +10,6 @@ import { ActiveOrder } from "../../../interfaces/order.interface";
 
 const UserAccountPage: NextPage = () => {
   const { data, loading, error } = useQuery(userAccountQuery);
-  console.log("data", data);
   const activeOrder: ActiveOrder = data?.activeOrder || null;
   return (
     <Layout pageTitle={"My account"}>
@@ -30,6 +29,8 @@ const UserAccountPage: NextPage = () => {
                         {item.productVariant.name}
                       </span>{" "}
                       <br /> ${decimalToFull(item.productVariant.price)}
+                      <br />{" "}
+                      <div className="py-2 mt-4 cursor-pointer">Remove</div>
                     </div>
                     <div className="h-[80px] w-[120px] overflow-hidden">
                       <Asset

@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { ASSET_FIELDS } from "./fragments/product.fragments";
 
 export const userAccountQuery = gql`
   query {
@@ -11,10 +10,8 @@ export const userAccountQuery = gql`
       totalQuantity
       total
       totalWithTax
-      customer {
-        emailAddress
-      }
       lines {
+        id
         productVariant {
           id
           sku
