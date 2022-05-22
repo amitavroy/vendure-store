@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Product } from "../../interfaces/product.interface";
 import { Asset } from "../Asset";
 import { decimalToFull } from "../utils";
+import { AddToCart } from "./AddToCart";
 import { ProductThumb } from "./ProductThumb";
 
 interface Props {
   product: Product;
 }
 export const ProductDetails: React.FC<Props> = ({ product }) => {
+  const [variantId, setVariantId] = useState(product.variants[0].id);
   return (
     <section>
       <div className="relative max-w-screen-xl px-4 py-8 mx-auto">
@@ -18,10 +20,14 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-4 lg:mt-4">
-              <ProductThumb asset={product.featuredAsset} />
-              <ProductThumb asset={product.featuredAsset} />
-              <ProductThumb asset={product.featuredAsset} />
-              <ProductThumb asset={product.featuredAsset} />
+              {product.variants.map((variant) => {
+                return (
+                  <ProductThumb
+                    key={variant.id}
+                    asset={product.featuredAsset}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -121,6 +127,42 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
             </details>
 
             <form className="mt-8">
+              {product.variantList.totalItems > 1 && (
+                <fieldset className="mb-4">
+                  <legend className="mb-1 text-sm font-medium">Variants</legend>
+                  <div className="flow-root">
+                    <div className="flex flex-wrap -m-0.5">
+                      {product.variants.map((variant) => {
+                        return (
+                          <label
+                            key={variant.id}
+                            htmlFor="color_tt"
+                            className="cursor-pointer p-0.5"
+                          >
+                            <input
+                              type="radio"
+                              name="color"
+                              id="color_tt"
+                              className="sr-only peer"
+                            />
+
+                            <span
+                              onClick={(
+                                event: React.MouseEvent<HTMLSpanElement>
+                              ) => {
+                                setVariantId(variant.id);
+                              }}
+                              className="inline-block px-3 py-1 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white"
+                            >
+                              {variant.name} {variant.id}
+                            </span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </fieldset>
+              )}
               <fieldset>
                 <legend className="mb-1 text-sm font-medium">Color</legend>
 
@@ -168,79 +210,6 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
                 </div>
               </fieldset>
 
-              <fieldset className="mt-4">
-                <legend className="mb-1 text-sm font-medium">Size</legend>
-
-                <div className="flow-root">
-                  <div className="flex flex-wrap -m-0.5">
-                    <label htmlFor="size_xs" className="cursor-pointer p-0.5">
-                      <input
-                        type="radio"
-                        name="size"
-                        id="size_xs"
-                        className="sr-only peer"
-                      />
-
-                      <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white">
-                        XS
-                      </span>
-                    </label>
-
-                    <label htmlFor="size_s" className="cursor-pointer p-0.5">
-                      <input
-                        type="radio"
-                        name="size"
-                        id="size_s"
-                        className="sr-only peer"
-                      />
-
-                      <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white">
-                        S
-                      </span>
-                    </label>
-
-                    <label htmlFor="size_m" className="cursor-pointer p-0.5">
-                      <input
-                        type="radio"
-                        name="size"
-                        id="size_m"
-                        className="sr-only peer"
-                      />
-
-                      <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white">
-                        M
-                      </span>
-                    </label>
-
-                    <label htmlFor="size_l" className="cursor-pointer p-0.5">
-                      <input
-                        type="radio"
-                        name="size"
-                        id="size_l"
-                        className="sr-only peer"
-                      />
-
-                      <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white">
-                        L
-                      </span>
-                    </label>
-
-                    <label htmlFor="size_xl" className="cursor-pointer p-0.5">
-                      <input
-                        type="radio"
-                        name="size"
-                        id="size_xl"
-                        className="sr-only peer"
-                      />
-
-                      <span className="inline-flex items-center justify-center w-8 h-8 text-xs font-medium border rounded-full group peer-checked:bg-black peer-checked:text-white">
-                        XL
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-
               <div className="flex mt-8">
                 <div>
                   <label htmlFor="quantity" className="sr-only">
@@ -257,12 +226,7 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="block px-5 py-3 ml-3 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-500"
-                >
-                  Add to Cart
-                </button>
+                <AddToCart variantId={variantId} />
               </div>
             </form>
           </div>

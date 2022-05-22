@@ -30,7 +30,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <div className="flex items-center justify-between mt-1 font-medium">
           <p>${decimalToFull(product.variants[0].price, true)}</p>
 
-          <p className="text-xs tracking-wide uppercase">6 Colors</p>
+          {product.variantList.totalItems > 1 && (
+            <p className="text-xs tracking-wide uppercase">
+              {product.variantList.totalItems} Variants
+            </p>
+          )}
         </div>
       </a>
     </Link>

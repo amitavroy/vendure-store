@@ -6,10 +6,12 @@ export interface Product {
   description: string;
   slug: string;
   featuredAsset: AssetType;
+  variantList: { totalItems: number };
   variants: Array<Variant>;
 }
 
 export interface Variant {
+  id: number;
   sku: string;
   name: string;
   productId: number;
