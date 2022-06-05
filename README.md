@@ -1,3 +1,7 @@
+# Vendure Storefront using ReactJS and NextJS
+
+![Home page](https://raw.githubusercontent.com/amitavroy/vendure-store/master/screenshots/homepage.png)
+
 This is a [Next.js](https://nextjs.org/) project which is a Storefront connecting to [Vendure Commerce](https://www.vendure.io/) which is a headless E-Commerce solution built using [Nest.js](https://nestjs.com/).
 
 Check the [demo](https://vendure-store-lyart.vercel.app/) of this Storefront to understand visually how it looks.
