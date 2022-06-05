@@ -16,6 +16,7 @@ export const currentUserQuery = gql`
           name
         }
         phoneNumber
+        createdAt
       }
     }
   }

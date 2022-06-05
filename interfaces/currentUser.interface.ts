@@ -12,4 +12,5 @@ export interface Address {
   streetLine1?: string;
   streetLine2?: string;
   country: { code: string; name: string };
+  createdAt: string;
 }
