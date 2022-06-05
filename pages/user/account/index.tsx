@@ -2,15 +2,23 @@ import { useQuery } from "@apollo/client";
 import { getCookies } from "cookies-next";
 import { NextPage } from "next";
 import { Asset } from "../../../components/Asset";
-
 import { Layout } from "../../../components/Layout";
 import { decimalToFull } from "../../../components/utils";
+import { currentUserQuery } from "../../../graphql/current-user.query";
 import { userAccountQuery } from "../../../graphql/user-account.query";
+import { CurrentUser } from "../../../interfaces/currentUser.interface";
 import { ActiveOrder } from "../../../interfaces/order.interface";
 
 const UserAccountPage: NextPage = () => {
   const { data, loading, error } = useQuery(userAccountQuery);
+  const {
+    data: userData,
+    loading: userLoading,
+    error: userError,
+  } = useQuery(currentUserQuery);
   const activeOrder: ActiveOrder = data?.activeOrder || null;
+  const currentUser: CurrentUser = userData?.activeCustomer || null;
+
   return (
     <Layout pageTitle={"My account"}>
       {!loading && (
@@ -40,6 +48,15 @@ const UserAccountPage: NextPage = () => {
                   </div>
                 </div>
               );
+            })}
+        </div>
+      )}
+      <hr />
+      {!userLoading && (
+        <div>
+          {currentUser.addresses.length > 0 &&
+            currentUser.addresses.map((address) => {
+              return <div key={address.id}>{address.fullName}</div>;
             })}
         </div>
       )}

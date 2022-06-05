@@ -20,10 +20,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           </strong>
         </div>
 
-        <Asset
-          asset={featuredAsset}
-          className="object-cover w-full -mt-3 h-[350px] sm:h-[450px]"
-        />
+        {featuredAsset && (
+          <Asset
+            asset={featuredAsset}
+            className="object-cover w-full -mt-3 h-[350px] sm:h-[450px]"
+          />
+        )}
 
         <h5 className="mt-2 text-md text-blue-800">{name}</h5>
 

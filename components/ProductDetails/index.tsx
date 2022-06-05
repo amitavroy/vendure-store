@@ -16,7 +16,9 @@ export const ProductDetails: React.FC<Props> = ({ product }) => {
         <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
             <div className="aspect-w-1">
-              <Asset asset={product.featuredAsset} loading="eager" />
+              {product.featuredAsset && (
+                <Asset asset={product.featuredAsset} loading="eager" />
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4 lg:mt-4">
